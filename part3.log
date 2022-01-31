@@ -1,0 +1,15 @@
+part3.html:33 d.name: test
+part3.html:34 d.val:  1
+part3.html:35 d.color:  red
+part3.html:36 i: 0
+part3.html:37 this: [object HTMLDivElement]
+part3.html:33 d.name: other
+part3.html:34 d.val:  2
+part3.html:35 d.color:  green
+part3.html:36 i: 1
+part3.html:37 this: [object HTMLDivElement]
+part3.html:33 d.name: b
+part3.html:34 d.val:  3
+part3.html:35 d.color:  seven
+part3.html:36 i: 2
+part3.html:37 this: [object HTMLDivElement]
