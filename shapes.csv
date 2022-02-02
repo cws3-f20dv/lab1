@@ -1,5 +1,5 @@
 type,posx,posy,sizex,sizey,color,contents
-"rect",0,0,200,100,"pink",
-"circle",250,50,,,,
-"ellipse",250,50,150,50,,
-"text",150,50,,,,"This is some text!"
+'rect',0,0,200,100,'pink',
+'circle',250,50,,,,
+'ellipse',250,50,150,50,,
+'text',150,50,,,,'This is some text!'
