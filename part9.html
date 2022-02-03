@@ -16,49 +16,69 @@
         <p class="lead">Calum Shepherd - H00292866</p>
         <hr />
 
-        <!-- Exercise 17 -->
+        <!-- Exercise 17/18/19 -->
         <script>
-            const data = [50, 400, 300, 900, 250, 1000]
+            /**
+             * Draws a bar chart from headerless CSV data in the given file
+             * @param  {string} file Path to file (must be pushed to github.com/cws3-f20dv/lab1/main)
+             */
+            function barChart(file)
+            {
+                d3.text('https://raw.githubusercontent.com/cws3-f20dv/lab1/main/'+file).then(function(d)
+                {
+                    /*
+                     * Using ds3.text and below method to convert to array of numbers
+                     * Credit: https://www.jscodetips.com/examples/read-csv-tsv-with-no-header-line-in-d3
+                     */
+                    data = d3.csvParseRows(d).map(function(r) {
+                        // Unary +v converts to number and .map() returns to original object in sequence
+                        return r.map(function(v) { return +v; });
+                    })[0]; // have to index to first element of object
 
-            const width     = 500;
-            const barHeight = 20;
-            const margin    = 1;
+                    const width     = 500;
+                    const barHeight = 20;
+                    const margin    = 1;
 
-            var scale = d3.scaleLinear()
-               .domain([d3.min(data), d3.max(data)])
-               .range([50, 500]);
+                    var scale = d3.scaleLinear()
+                       .domain([d3.min(data), d3.max(data)])
+                       .range([50, 500]);
 
-            var svg = d3.select("body")
-                .append("svg")
-                .attr("width", width)
-                .attr("height", barHeight * data.length);
+                    var svg = d3.select("body")
+                        .append("svg")
+                        .attr("width", width)
+                        .attr("height", barHeight * data.length);
 
-            var g = svg.selectAll("g")
-                .data(data)
-                .enter()
-                .append("g")
-                .attr("transform", function (d, i) {
-                  return "translate(0," + i * barHeight + ")";
+                    var g = svg.selectAll("g")
+                        .data(data)
+                        .enter()
+                        .append("g")
+                        .attr("transform", function (d, i) {
+                          return "translate(0," + i * barHeight + ")";
+                        });
+
+                    g.append("rect")
+                       .attr("width", function (d) {
+                         return scale(d);
+                       })
+                       .attr('fill', function(d)
+                        {   // Set colour based on data range
+                            if (d<100) return 'green';
+                            else if (d>500) return 'red';
+                            else return 'blue';
+                        })
+                       .attr("height", barHeight - margin)
+
+                    g.append("text")
+                       .attr("x", function (d) { return (scale(d)); })
+                       .attr("y", barHeight / 2)
+                       .attr("dy", ".35em")
+                       .style('text-anchor', 'end')
+                       .text(function (d) { return d; });
                 });
+            }
 
-            g.append("rect")
-               .attr("width", function (d) {
-                 return scale(d);
-               })
-               .attr('fill', function(d)
-                {   // Set colour based on data range
-                    if (d<100) return 'green';
-                    else if (d>500) return 'red';
-                    else return 'blue';
-                })
-               .attr("height", barHeight - margin)
-
-            g.append("text")
-               .attr("x", function (d) { return (scale(d)); })
-               .attr("y", barHeight / 2)
-               .attr("dy", ".35em")
-               .style('text-anchor', 'end')
-               .text(function (d) { return d; });
+            barChart('barchart.csv');
+            barChart('barchart2.csv');
         </script>
         <hr/>
     </div>
