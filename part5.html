@@ -107,18 +107,32 @@
             .attr("height", 400)
             .style("border", '1px solid green');
 
-            d3.csv('shapes.csv', function(data)
+            d3.csv('https://raw.githubusercontent.com/cws3-f20dv/lab1/main/shapes.csv', function(data)
             {
-                switch(data.type) {
-                    case "rect":
-                        // TODO
-                        break;
-                    case "circle":
-                        break;
-                    case "ellipse":
-                        break;
-                    case "text":
-                        break;
+                if (data.type.includes("rect")) {
+                    svg.append("rect")
+                    .attr("x", data.posx)
+                    .attr("y", data.posy)
+                    .attr("width", data.sizex)
+                    .attr("height", data.sizey)
+                    .attr("fill", data.color);
+                } else if (data.type.includes("circle")) {
+                    svg.append("circle")
+                    .attr("cx", data.posx)
+                    .attr("cy", data.posy)
+                    .attr("r", data.sizex);
+                } else if (data.type.includes("ellipse")) {
+                    svg.append("ellipse")
+                    .attr("cx", data.posx)
+                    .attr("cy", data.posy)
+                    .attr("rx", data.sizex)
+                    .attr("ry", data.sizey)
+                } else if (data.type.includes("text")) {
+                    svg.append("text")
+                    .attr("x", data.posx)
+                    .attr("y", data.posy)
+                    .attr("stroke", data.color)
+                    .text(data.contents);
                 }
             });
 
