@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>F20DV Lab 1</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src='https://d3js.org/d3.v7.min.js'></script>
+</head>
+<body>
+    <div class="container my-4">
+        <a href="index.html" class="btn btn-outline-secondary float-end">Back to Index</a>
+
+        <h1>F20DV Lab 1</h1>
+        <h4 class="text-muted">Axis</h4>
+        <p class="lead">Calum Shepherd - H00292866</p>
+        <hr />
+
+        <!-- Exercise 20 -->
+        <script>
+            const width  = 400;
+            const height = 300;
+
+            var data = [10, 15, 20, 25, 30];
+            var svg = d3.select("body")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            var xscale = d3.scaleLinear()
+                .domain([0, d3.max(data)])
+                .range([0, width - 100]);
+
+            var yscale = d3.scaleLinear()
+                    .domain([0, d3.max(data)])
+                    .range([height/2, 0]);
+
+            var x_axis = d3.axisBottom()
+                    .scale(xscale);
+            var x2_axis = d3.axisTop()
+                    .scale(xscale);
+
+            var y_axis = d3.axisLeft()
+                    .scale(yscale);
+            var y2_axis = d3.axisRight()
+                    .scale(yscale);
+
+            svg.append("g")
+               .attr("transform", "translate(50, 10)")
+               .call(y_axis);
+            svg.append("g")
+               .attr("transform", "translate("+ (width-50) +", 10)")
+               .call(y2_axis);
+
+            var xAxisTranslate = height/2 + 10;
+
+            svg.append("g")
+                .attr("transform", "translate(50, " + xAxisTranslate + ")")
+                .call(x_axis);
+            svg.append("g")
+                .attr("transform", "translate(50, 10)")
+                .call(x2_axis);
+
+        /* Exercise 21 */
+
+        const data2 = [50, 400, 300, 900, 250, 1000];
+
+        var scale = d3.scaleLinear()
+               .domain([d3.min(data2), d3.max(data2)])
+               .range([50, 500]);
+
+        const barHeight = 20;
+
+        var svg = d3.select("body")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", barHeight * data2.length);
+
+        var g = svg.selectAll("g")
+                .data(data2)
+                .enter()
+                .append("g")
+                .attr("transform", function (d, i) {
+                  return "translate(50," + i * barHeight + ")";
+                });
+
+        g.append("rect")
+           .attr("width", function (d) {
+             return scale(d);
+           })
+           .attr('fill', 'blue')
+           .attr("height", barHeight)
+
+        var xscale = d3.scaleLinear()
+                .domain([0, d3.max(data)])
+                .range([0, width - 100]);
+        var yscale = d3.scaleLinear()
+                .domain([0, d3.max(data)])
+                .range([height/2, 0]);
+
+        var x_axis = d3.axisBottom()
+                .scale(xscale);
+        var y_axis = d3.axisLeft()
+                .scale(yscale);
+
+        svg.append("g")
+           .attr("transform", "translate(50, 10)")
+           .call(y_axis);
+
+        var xAxisTranslate = height/2 + 10;
+        svg.append("g")
+            .attr("transform", "translate(0, " + xAxisTranslate + ")")
+            .call(x_axis);
+    </script>
+
+    </div>
+</body>
+</html>
