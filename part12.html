@@ -145,7 +145,8 @@
                 .y(function(d) { return y(d.y)  })
             );
 
-            /* Exercise 25 */
+            /* Exercise 25/26 */
+            // Add circular markers
             svg.selectAll("dot")
             .data(d)
             .enter()
@@ -154,13 +155,15 @@
             .attr("cy", function (d) { return y(d.y) } )
             .attr("r", 5)
             .style("fill", "red");
+
+            // Add triangle markers
+            // https://chewett.co.uk/blog/1483/d3-js-version-5-scatterplot-with-shapes/
             svg.selectAll("dot")
             .data(d2)
             .enter()
-            .append("circle")
-            .attr("cx", function (d) { return x(d.x) } )
-            .attr("cy", function (d) { return y(d.y) } )
-            .attr("r", 5)
+            .append("path")
+            .attr("d", d3.symbol().type(d3.symbolTriangle)) // d3 triangle symbol
+            .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; })
             .style("fill", "green");
 
             /* Exercise 27
