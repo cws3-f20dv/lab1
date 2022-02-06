@@ -39,15 +39,16 @@
                     const barHeight = 20;
                     const margin    = 1;
 
+                    // Scale data
                     var scale = d3.scaleLinear()
                        .domain([d3.min(data), d3.max(data)])
                        .range([50, 500]);
 
+                    // Add bar chart
                     var svg = d3.select("body")
                         .append("svg")
                         .attr("width", width)
                         .attr("height", barHeight * data.length);
-
                     var g = svg.selectAll("g")
                         .data(data)
                         .enter()
@@ -56,6 +57,7 @@
                           return "translate(0," + i * barHeight + ")";
                         });
 
+                    // Add bars to chart
                     g.append("rect")
                        .attr("width", function (d) {
                          return scale(d);
@@ -68,6 +70,7 @@
                         })
                        .attr("height", barHeight - margin)
 
+                   // Add label to bar
                     g.append("text")
                        .attr("x", function (d) { return (scale(d)); })
                        .attr("y", barHeight / 2)
@@ -77,10 +80,10 @@
                 });
             }
 
+            // Draw bar charts based on different datasets
             barChart('barchart.csv');
             barChart('barchart2.csv');
         </script>
-        <hr/>
     </div>
 </body>
 </html>

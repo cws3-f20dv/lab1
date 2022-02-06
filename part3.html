@@ -17,15 +17,19 @@
         <hr />
 
         <!-- Exercise 6 -->
+        <h5>Exercise 6</h5>
         <div class="firstDivs"></div>
         <div class="firstDivs"></div>
         <div class="firstDivs"></div>
 
         <script>
-            let otherdata = [ {name:'test',  val:1, color:'red'},
-                              {name:'other', val:2, color:'green'},
-                              {name:'b',     val:3, color:'seven'} ];
+            let otherdata = [
+                {name:'test',  val:1, color:'red'},
+                {name:'other', val:2, color:'green'},
+                {name:'b',     val:3, color:'seven'}
+            ];
 
+            // Logs data to console and adds select amount to content of each div
             d3.select("body")
             .selectAll(".firstDivs")
             .data(otherdata)
@@ -35,13 +39,13 @@
                 console.log("d.color:  " + d.color);
                 console.log("i: " + i);
                 console.log("this: " + this);
-
                 return 'cont:' + d.name + ';color:' + d.color ; // return value is used to set the 'text'
             });
         </script>
         <hr />
 
         <!-- Exercise 7 -->
+        <h5>Exercise 7</h5>
         <div class="secondDivs"></div>
         <div class="secondDivs"></div>
         <div class="secondDivs"></div>
@@ -50,41 +54,39 @@
         <script>
             let num = [10, 50, 100, 200];
 
+            // Adds select data to content of each div
             d3.select("body")
             .selectAll(".secondDivs")
             .data(num)
             .text(function (d, i) {
                 return 'cont:' + d; // return value is used to set the 'text'
             })
-            .style("color", function(d, i) {
-                if (d >= 50 && d <= 100) {
-                    return "red";
-                } else {
-                    return "yellow";
-                }
-                return 'blue';
+            .style("color", function(d, i) { // Sets colour based on value
+                if (d >= 50 && d <= 100) return "red"; else return "yellow";
+                // Removing dead code from example: return 'blue';
             });
         </script>
         <hr />
 
         <!-- Exercise 8 -->
+        <h5>Exercise 8</h5>
         <script>
             var myData = ["a", 4, 1, "b", 6, 2, 8, 9, "z"];
 
+            // Adds spans to myData.length and sets the content & colour
             var p = d3.select("div")
-                    .selectAll("span")
-                    .data(myData)
-                    .enter()
-                    .append('span')
-                    .text(function (d, i) {
-                        return d;
-                    }).style("color", function(d, i) {
-                        if (typeof d == "string") {
-                            return "blue";
-                        } else if (typeof d == "number") {
-                            return "green";
-                        }
-                    });
+                .selectAll("span")
+                .data(myData)
+                .enter()
+                .append('span')
+                .text(function (d, i) {
+                    return d;
+                }).style("color", function(d, i) { // Colour based on type of data
+                    if (typeof d == "string")
+                        return "blue";
+                    else if (typeof d == "number")
+                        return "green";
+                });
         </script>
         <hr />
     </div>

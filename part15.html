@@ -35,22 +35,23 @@
 
             const radius = Math.min(xSize, ySize) / 2;
 
-            var color = d3.scaleOrdinal(["#eae8ff","#e1dfed","#d8d5db","#c3c1c8","#adacb5","#8d8e99","#6d6f7c","#2d3142","#6f84a1","#b0d7ff", "#B7DBFF", "#BEDEFF"]);
+            // Colours for chart wedges
+            var color = d3.scaleOrdinal([
+                "#eae8ff","#e1dfed","#d8d5db","#c3c1c8","#adacb5","#8d8e99","#6d6f7c","#2d3142","#6f84a1","#b0d7ff", "#B7DBFF", "#BEDEFF"
+            ]);
 
             // Generate the pie
             var pie = d3.pie();
 
             // Generate the arcs
-            var arc = d3.arc()
-                  .innerRadius(0)
-                  .outerRadius(radius);
+            var arc = d3.arc().innerRadius(0).outerRadius(radius);
 
             //Generate groups
             var arcs = svg.selectAll("arc")
-                  .data(pie(data))
-                  .enter()
-                  .append("g")
-                  .attr("class", "arc")
+                .data(pie(data))
+                .enter()
+                .append("g")
+                .attr("class", "arc")
 
             //Draw arc paths
             arcs.append("path")

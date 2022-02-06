@@ -16,7 +16,9 @@
         <hr />
 
         <!-- Exercise  1 -->
+        <h5>Exercise 1</h5>
         <script>
+            // Prints the D3 version to the console
             console.log('d3.version:', d3.version);
         </script>
         <p>
@@ -26,29 +28,34 @@
         <hr />
 
         <!-- Exercise 2 -->
+        <h5>Exercise 2</h5>
         <p id="para1">First paragraph</p>
         <p>Second paragraph</p>
         <script>
+            // Sets the p tag with the relevant ID to font size 16
             d3.select("#para1").style("font-size", "16pt");
         </script>
         <hr />
 
         <!-- Exercise 3/4 -->
+        <h5>Exercise 3/4</h5>
         <script>
             for (var i = 0; i < 10; i++) {
-                let p = d3.select("div").append(
-                    "p",
-                );
+                let p = d3.select("div").append("p");
+                // Sets each p tag's content to the iteration number
                 p.text("Iteration " + i)
-                 .style("color", i < 5 ? "green" : "red")
+                 .style("color", i < 5 ? "green" : "red") // 0-4 green, 5-> red
                  .attr("id", "ex3-" + i);
             }
+            // Sets the first para to purple text
             d3.select("#ex3-0").text("Start").style("color", "purple");
         </script>
         <hr />
 
         <!-- Exercise 5 -->
+        <h5>Exercise 5</h5>
         <script>
+            // Adds green text
             d3.select("div").append("p").text("Hello World!").style("color", "green");
         </script>
         <hr />
