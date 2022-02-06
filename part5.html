@@ -128,11 +128,47 @@
                 }
             });
 
-            /*
-            Exercise 13: Extend the example to include the ‘enter’ and ‘exit’ concepts.  So that the svg elements are updated,
-            created or removed based on the csv data from your csv file.
-             */
+            /* Exercise 13 */
+            svg3 = d3.select("body")
+            .append("svg")
+            .attr("width",  400)
+            .attr("height", 400)
+            .style("border", '2px solid blue');
 
+            d3.csv('https://raw.githubusercontent.com/cws3-f20dv/lab1/main/shapes.csv', function(data)
+            {
+                svg3.selectAll(data.type)
+                    .data(data)
+                    .join(
+                        enter  =>
+                        {
+                            enter.append(data.type);
+                            if (data.type.includes("rect")) {
+                                enter.attr("x", data.posx)
+                                .attr("y", data.posy)
+                                .attr("width", data.sizex)
+                                .attr("height", data.sizey)
+                                .attr("fill", data.color);
+                            } else if (data.type.includes("circle")) {
+                                enter.attr("cx", data.posx)
+                                .attr("cy", data.posy)
+                                .attr("r", data.sizex);
+                            } else if (data.type.includes("ellipse")) {
+                                enter.attr("cx", data.posx)
+                                .attr("cy", data.posy)
+                                .attr("rx", data.sizex)
+                                .attr("ry", data.sizey)
+                            } else if (data.type.includes("text")) {
+                                enter.attr("x", data.posx)
+                                .attr("y", data.posy)
+                                .attr("stroke", data.color)
+                                .text(data.contents);
+                            }
+                        },
+                        update => { /* ? */ },
+                        exit   => { /* ? */ }
+                    );
+            });
         </script>
     </div>
 </body>
