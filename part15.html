@@ -54,11 +54,13 @@
                 .attr("class", "arc")
 
             //Draw arc paths
-            arcs.append("path")
-              .attr("fill", function(d, i) {
-                return color(i);
-              })
-              .attr("d", arc);
+            arcs.append("path").attr("fill", function(d, i) { return color(i); }).attr("d", arc);
+
+            //Draw labels
+            arcs.append('text')
+                .text(function(d){ return d.data})
+                // Find centrepoint of arc to place text
+                .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")";  });
         </script>
     </div>
 </body>
