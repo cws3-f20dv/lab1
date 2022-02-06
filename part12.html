@@ -16,8 +16,13 @@
         <p class="lead">Calum Shepherd - H00292866</p>
         <hr />
 
-        <!-- Exercise 22 -->
         <script>
+            /* Exercise 22 */
+            /**
+             * Draws a line chart.
+             *
+             * @param      {<type>}  data    The data
+             */
             function drawChart(data)
             {
                 // Set Dimensions
@@ -75,9 +80,9 @@
             drawChart(d);
 
             /* Exercise 23 */
-            d3.text('https://raw.githubusercontent.com/cws3-f20dv/lab1/main/barchart.csv').then(function(row) {
-                loadedData = d3.csvParseRows(row).map(function(r) { return r.map(function(v) { return +v; }); })[0];
-                //drawChart(loadedData);
+            d3.csv('https://raw.githubusercontent.com/cws3-f20dv/lab1/main/linechart.csv').then(function(d) {
+                // Draw chart from random data in csv for ex. 23
+                drawChart(d);
             });
 
             /* Exercise 24 */
